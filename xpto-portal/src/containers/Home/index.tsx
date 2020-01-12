@@ -1,34 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import { useStyles } from './style';
-
-interface AppData {
-  title: string;
-  url: string;
-}
-
-const appData: AppData[] = [
-  {
-    url: 'https://dtidigital.com.br/',
-    title: 'dtidigital',
-  },
-  {
-    url: 'https://www.nasa.gov/',
-    title: 'Nasa',
-  },
-  {
-    url: 'https://www.expedia.com.br/Hoteis',
-    title: 'Hoteis',
-  },
-  {
-    url: 'https://www.wikipedia.org/',
-    title: 'wikipedia',
-  },
-];
+import AppContext from 'src/context';
 
 export default function TitlebarGridList() {
   const classes = useStyles();
+  const { appData } = useContext(AppContext);
 
   return (
     <div className={classes.root}>
