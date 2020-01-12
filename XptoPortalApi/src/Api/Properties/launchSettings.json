@@ -24,8 +24,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONNECTION_STRING": "Server=192.168.15.11;Database=xptoPortal;Uid=root;Pwd=123456;",
-        "URL_API": "http://localhost:5555"
+        "CONNECTION_STRING": "Server=localhost;Database=xptoPortal;Uid=root;Pwd=123456;"
       }
     }
   }

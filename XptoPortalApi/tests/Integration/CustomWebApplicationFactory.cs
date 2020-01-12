@@ -103,7 +103,6 @@ namespace XptoPortalApi.Tests.Integration
             string audience = Config["Application:JWT_AUDIENCE"];
 
             var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(secret));
-            var encryptKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(ecrypt));
 
             var signingCredentials = new SigningCredentials(
                 securityKey,

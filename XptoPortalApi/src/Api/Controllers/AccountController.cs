@@ -1,11 +1,12 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using XptoPortalApi.DataAcess.Interfaces;
 using XptoPortalApi.Models;
+using XptoPortalApi.Services.Utils;
 
 namespace XptoPortalApi.Api.Controllers
 {
@@ -25,7 +26,7 @@ namespace XptoPortalApi.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get() => Ok(await _userManager.Users.ToAsyncEnumerable().ToList());
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost("Login"), AllowAnonymous]
         public IActionResult Login(Auth auth)
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Email == auth.Email);
@@ -37,6 +38,7 @@ namespace XptoPortalApi.Api.Controllers
             string audience = _config["Application:JWT_AUDIENCE"];
 
             user.GenerateToken(secret, issuer, audience);
+            Console.WriteLine(JsonService.Serialize(user));
 
             return Ok(user);
         }

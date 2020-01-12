@@ -47,11 +47,9 @@ namespace XptoPortalApi
         {
 
             string secret = _config["Application:SECRET_KEY"];
-            string ecrypt = _config["Application:ENCRYPT_KEY"];
             string issuer = _config["Application:JWT_ISSUE"];
             string audience = _config["Application:JWT_AUDIENCE"];
             string urlConnection = _config["CONNECTION_STRING"];
-            string urlApi = _config["URL_API"];
 
             services.AddDbContext<MainContext>(options => options.UseMySql(_config["CONNECTION_STRING"], x =>
             {

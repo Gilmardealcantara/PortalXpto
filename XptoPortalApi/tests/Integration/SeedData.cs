@@ -3,6 +3,9 @@ using XptoPortalApi.Models;
 using XptoPortalApi.DataAcess;
 using Bogus;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace XptoPortalApi.Tests.Integration
 {
