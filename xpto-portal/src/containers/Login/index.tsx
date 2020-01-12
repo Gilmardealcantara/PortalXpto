@@ -2,7 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { AccountCircle, Lock } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
+import { Button, Snackbar, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { useStyles } from './style';
 import history from 'src/routers/history';
 import { AUTH_USER, AUTH_TOKEN } from 'src/utils/constants';
@@ -20,17 +21,25 @@ const Login: React.FC = () => {
   const user = useSelector((state: ApplicationState) => state.user);
   const dispatch = useDispatch();
   const [auth, setAuth] = useState<Auth>(initialState);
+  const [toast, setToast] = useState<boolean>(false);
 
   useEffect(() => {
     if (user.data) {
       localStorage.setItem(AUTH_TOKEN, user.data.token);
       localStorage.setItem(AUTH_USER, JSON.stringify(user.data));
       history.push('Home');
+    } else if (user.error) {
+      setToast(true);
     }
   }, [user]);
 
   const handleChange = (name: keyof Auth) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth({ ...auth, [name]: event.target.value });
+  };
+
+  const handleToastClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+    if (reason === 'clickaway') return;
+    setToast(false);
   };
 
   const handleLogin = useCallback(() => {
@@ -73,6 +82,28 @@ const Login: React.FC = () => {
         >
           {user.loading ? 'loading...' : 'Entrar'}
         </Button>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={toast}
+          autoHideDuration={6000}
+          onClose={handleToastClose}
+          message="Erro, tente mais tarde!"
+          action={
+            <React.Fragment>
+              <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleToastClose}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </React.Fragment>
+          }
+        />
       </div>
     </div>
   );
