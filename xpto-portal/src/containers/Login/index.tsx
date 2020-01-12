@@ -5,7 +5,7 @@ import { AccountCircle, Lock } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { useStyles } from './style';
 import history from 'src/routers/history';
-import { AUTH_USER } from 'src/utils/constants';
+import { AUTH_USER, AUTH_TOKEN } from 'src/utils/constants';
 import { ApplicationState } from 'src/store';
 import * as UserActions from 'src/store/ducks/user/actions';
 import { Auth } from 'src/store/ducks/user/types';
@@ -23,6 +23,8 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (user.data) {
+      localStorage.setItem(AUTH_TOKEN, user.data.token);
+      localStorage.setItem(AUTH_USER, JSON.stringify(user.data));
       history.push('Home');
     }
   }, [user]);
