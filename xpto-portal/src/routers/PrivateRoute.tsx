@@ -2,6 +2,7 @@
 import React from 'react';
 import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
 import { AUTH_TOKEN_KEY } from 'src/utils/constants';
+import Main from 'src/containers/Main';
 
 enum AuthenticatedResp {
   unauthorized,
@@ -23,7 +24,7 @@ const PrivateRoute = ({ component, ...rest }: RouteProps) => {
 
   const render = (props: RouteComponentProps): React.ReactNode => {
     const isAuth = isAuthenticated();
-    if (isAuth === AuthenticatedResp.ok) return React.createElement(component, props);
+    if (isAuth === AuthenticatedResp.ok) return <Main component={component} routeProps={props} />;
     else if (isAuth === AuthenticatedResp.forbidden) return <Redirect to={{ pathname: '' }} />;
     else return <Redirect to={{ pathname: '/Login' }} />;
   };
