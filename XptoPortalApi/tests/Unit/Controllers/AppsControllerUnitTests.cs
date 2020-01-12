@@ -30,9 +30,7 @@ namespace XptoPortalApi.Tests.Unit.Services
         {
             var mockDependency = new Mock<IAppsRepo>();
 
-            var id = 0;
             var data = new Faker<App>()
-                .RuleFor(p => p.Id, p => ++id)
                 .RuleFor(p => p.Title, p => p.Random.String2(1, 10, "qwertyuiopasdfghjklzxcvbnm1234567890"))
                 .RuleFor(p => p.Url, p => p.Random.String2(1, 10, "qwertyuiopasdfghjklzxcvbnm1234567890"))
                 .Generate(10).ToAsyncEnumerable();

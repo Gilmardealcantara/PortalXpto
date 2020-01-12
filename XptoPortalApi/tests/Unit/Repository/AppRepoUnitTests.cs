@@ -10,22 +10,25 @@ using XptoPortalApi.Services.Utils;
 
 namespace XptoPortalApi.Tests.Unit.Repository
 {
-    public class AppsUnitTests : IClassFixture<DatabaseFixture>
+    public class AppRepoUnitTests
     {
         private readonly IAppsRepo _apps;
         private readonly IList<App> _appFakeMocks;
-        public AppsUnitTests(DatabaseFixture databaseFixture)
+        public AppRepoUnitTests()
         {
-            _apps = new AppsRepo(databaseFixture.Context);
-            _appFakeMocks = databaseFixture.AppFakeMocks;
+            DatabaseFixture.GenerateDataBase();
+            _apps = new AppsRepo(DatabaseFixture.Context);
+            _appFakeMocks = DatabaseFixture.AppFakeMocks;
         }
 
         [Fact(DisplayName = "App Should Be Selected")]
         public async Task App_Should_Be_Selected()
         {
             var data = await _apps.Select().ToList();
-            Assert.True(_appFakeMocks.Count() > data.Count());
-            // Assert.Equal(JsonService.Serialize(_appFakeMocks), JsonService.Serialize(data));
+            Assert.True(data.Count() > 0);
+            Console.WriteLine(_appFakeMocks.Count());
+            Console.WriteLine(data.Count());
+            Assert.True(_appFakeMocks.Count() < data.Count());
         }
 
         [Fact(DisplayName = "App Should Be Selected ById")]
@@ -42,6 +45,7 @@ namespace XptoPortalApi.Tests.Unit.Repository
         {
             var app = new App()
             {
+                Id = 13,
                 Title = "Teste",
                 Url = "https://teste/teste",
             };
@@ -97,10 +101,10 @@ namespace XptoPortalApi.Tests.Unit.Repository
             Assert.True(pageSize >= data.Results.Count());
             Assert.Equal(page, data.CurrentPage);
             Assert.Equal(pageSize, data.PageSize);
-            Assert.Equal(10, data.RowCount);
-            Assert.Equal(Math.Ceiling(10.00 / pageSize), data.PageCount);
+            Assert.Equal(12, data.RowCount);
+            Assert.Equal(Math.Ceiling(12.00 / pageSize), data.PageCount);
             Assert.Equal((page - 1) * pageSize + 1, data.FirstRowOnPage);
-            Assert.Equal(Math.Min(page * pageSize, 10), data.LastRowOnPage);
+            Assert.Equal(Math.Min(page * pageSize, 12), data.LastRowOnPage);
 
         }
     }

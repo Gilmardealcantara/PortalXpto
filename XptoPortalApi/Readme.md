@@ -57,9 +57,7 @@ dotnet watch --project src/Api/Api.csproj  run
 ### Migrate
 
 ```
-export CONNECTION_STRING="Server=9.6.48.179;Database=boilerplatedotnet;Uid=gilmar;Pwd=123456;"
-# win
-set CONNECTION_STRING="Server=9.6.48.179;Database=XptoPortalApi;Uid=gilmar;Pwd=123456;"
+export CONNECTION_STRING="Server=192.168.15.11;Database=xptoPortal;Uid=root;Pwd=123456;"
 cd src/Api
 
 dotnet ef migrations --project ../EFMigrate add InitialMigrate

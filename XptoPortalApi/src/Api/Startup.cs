@@ -50,13 +50,13 @@ namespace XptoPortalApi
             string urlConnection = _config["CONNECTION_STRING"];
             string urlApi = _config["URL_API"];
 
-            // services.AddDbContext<MainContext>(options => options.UseMySql(_config["CONNECTION_STRING"], x =>
-            // {
-            //     x.MigrationsHistoryTable("__XptoPortalApiMigrationsHistory");
-            //     x.MigrationsAssembly("XptoPortalApi.EFMigrate");
-            // }));
+            services.AddDbContext<MainContext>(options => options.UseMySql(_config["CONNECTION_STRING"], x =>
+            {
+                x.MigrationsHistoryTable("__XptoPortalApiMigrationsHistory");
+                x.MigrationsAssembly("XptoPortalApi.EFMigrate");
+            }));
 
-            services.AddDbContext<MainContext>(options => options.UseInMemoryDatabase("app.db"));
+            // services.AddDbContext<MainContext>(options => options.UseInMemoryDatabase("app.db"));
             services.AddMemoryCache();
 
             /* Repositories */
@@ -157,11 +157,6 @@ namespace XptoPortalApi
                 app.UseHsts();
             }
 
-            if (!_env.IsStaging())
-            {
-                app.UseWebSockets();
-                app.Map("/ws", (_app) => _app.UseMiddleware<WebSocketManagerMiddleware>(serviceProvider.GetService<ChatMessageHandler>()));
-            }
             app.UseMiddleware<ExceptionMiddleware>(_logger);
             app.UseHttpsRedirection();
             app.UseHealthChecks("/Health");

@@ -13,6 +13,11 @@ namespace XptoPortalApi.DataAcess.Mappings
 
             builder.Property(p => p.Url).HasColumnType("varchar(500)").IsRequired();
             builder.Property(p => p.Title).HasColumnType("varchar(50)").IsRequired();
+
+            builder.HasData(
+                new App { Id = 1, Title = "DTI", Url = "https://dtidigital.com.br/" },
+                new App { Id = 2, Title = "wikipedia", Url = "https://www.wikipedia.org/" }
+            );
         }
     }
 }

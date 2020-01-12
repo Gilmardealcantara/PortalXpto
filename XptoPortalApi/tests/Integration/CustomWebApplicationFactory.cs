@@ -51,8 +51,6 @@ namespace XptoPortalApi.Tests.Integration
                 Environment.SetEnvironmentVariable(item.Key, item.Value);
             }
 
-            builder.UseEnvironment("Staging");
-
             builder.ConfigureServices(services =>
             {
                 //Create a new service provider.
