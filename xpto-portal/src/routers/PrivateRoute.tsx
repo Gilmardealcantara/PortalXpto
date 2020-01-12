@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
-import { AUTH_TOKEN_KEY } from 'src/utils/constants';
+import { AUTH_USER } from 'src/utils/constants';
 import Main from 'src/containers/Main';
 
 enum AuthenticatedResp {
@@ -11,7 +11,7 @@ enum AuthenticatedResp {
 }
 
 export const isAuthenticated = (): AuthenticatedResp => {
-  if (localStorage.getItem(AUTH_TOKEN_KEY)) {
+  if (localStorage.getItem(AUTH_USER)) {
     return AuthenticatedResp.ok;
   }
   return AuthenticatedResp.unauthorized;

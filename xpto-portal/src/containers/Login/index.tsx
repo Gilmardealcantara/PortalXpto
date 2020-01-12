@@ -4,7 +4,7 @@ import { AccountCircle, Lock } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { useStyles } from './style';
 import history from 'src/routers/history';
-import { AUTH_TOKEN_KEY } from 'src/utils/constants';
+import { AUTH_USER } from 'src/utils/constants';
 
 interface Auth {
   username: string;
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     if (auth.username === initialState.username && auth.password === initialState.password) {
-      localStorage.setItem(AUTH_TOKEN_KEY, 'anyToken');
+      // localStorage.setItem(AUTH_TOKEN_KEY, 'anyToken');
       history.push('Home');
     }
   };
