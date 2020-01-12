@@ -1,16 +1,6 @@
 import React from 'react';
+import Routes from 'src/routers';
 
-interface Props {
-    name: string;
-}
-const Test: React.FC<Props> = ({ name }: Props) => <div>{name}</div>;
-
-const App: React.FC = () => {
-    return (
-        <div>
-            <Test name={'dsa'} />
-        </div>
-    );
-};
+const App: React.FC = () => <Routes />;
 
 export default App;
