@@ -23,6 +23,9 @@ using Microsoft.AspNetCore.Authorization;
 using XptoPortalApi.DataAcess.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using XptoPortalApi.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace XptoPortalApi
 {
@@ -55,6 +58,15 @@ namespace XptoPortalApi
                 x.MigrationsHistoryTable("__XptoPortalApiMigrationsHistory");
                 x.MigrationsAssembly("XptoPortalApi.EFMigrate");
             }));
+
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddRoleStore<RoleStore<IdentityRole<int>, MainContext, int>>()
+            .AddUserStore<UserStore<ApplicationUser, IdentityRole<int>, MainContext, int>>()
+            .AddEntityFrameworkStores<MainContext>()
+            .AddDefaultTokenProviders();
 
             // services.AddDbContext<MainContext>(options => options.UseInMemoryDatabase("app.db"));
             services.AddMemoryCache();

@@ -8,5 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>

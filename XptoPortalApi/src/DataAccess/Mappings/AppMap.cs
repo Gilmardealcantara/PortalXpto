@@ -9,7 +9,7 @@ namespace XptoPortalApi.DataAcess.Mappings
     {
         public void Configure(EntityTypeBuilder<App> builder)
         {
-            builder.ToTable("XptoPortalApiApps");
+            builder.ToTable("Apps");
 
             builder.Property(p => p.Url).HasColumnType("varchar(500)").IsRequired();
             builder.Property(p => p.Title).HasColumnType("varchar(50)").IsRequired();
