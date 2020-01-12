@@ -1,0 +1,11 @@
+
+tools
+*/**/coverage.cobertura.xml
+*/**/CodeCoverage/
+
+**/bin
+**/obj
+build
+
+.vs
+.vscode
