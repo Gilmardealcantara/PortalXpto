@@ -1,35 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { useStyles } from './style';
 import history from 'src/routers/history';
 import { AUTH_USER } from 'src/utils/constants';
-
-interface Auth {
-  username: string;
-  password: string;
-}
+import { ApplicationState } from 'src/store';
+import * as UserActions from 'src/store/ducks/user/actions';
+import { Auth } from 'src/store/ducks/user/types';
 
 const initialState: Auth = {
-  username: 'gilmar',
-  password: '1234',
+  email: 'gilmardealcantara@gmail.com',
+  password: '123456',
 };
 
 const Login: React.FC = () => {
   const classes = useStyles();
+  const user = useSelector((state: ApplicationState) => state.user);
+  const dispatch = useDispatch();
   const [auth, setAuth] = useState<Auth>(initialState);
+
+  useEffect(() => {
+    if (user.data) {
+      history.push('Home');
+    }
+  }, [user]);
 
   const handleChange = (name: keyof Auth) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth({ ...auth, [name]: event.target.value });
   };
 
-  const handleLogin = () => {
-    if (auth.username === initialState.username && auth.password === initialState.password) {
-      // localStorage.setItem(AUTH_TOKEN_KEY, 'anyToken');
-      history.push('Home');
-    }
-  };
+  const handleLogin = useCallback(() => {
+    console.log(auth);
+    dispatch(UserActions.loginRequest(auth));
+  }, [auth]);
 
   return (
     <div className={classes.container}>
@@ -41,8 +46,8 @@ const Login: React.FC = () => {
             id="input-with-icon-grid"
             label="Login"
             fullWidth={true}
-            value={auth.username}
-            onChange={handleChange('username')}
+            value={auth.email}
+            onChange={handleChange('email')}
           />
         </div>
         <div className={classes.loginInput}>
@@ -64,7 +69,7 @@ const Login: React.FC = () => {
           disableElevation
           onClick={handleLogin}
         >
-          Entrar
+          {user.loading ? 'loading...' : 'Entrar'}
         </Button>
       </div>
     </div>

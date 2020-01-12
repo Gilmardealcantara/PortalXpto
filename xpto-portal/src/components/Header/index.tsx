@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,12 +8,16 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useStyles } from './style';
+import { ApplicationState } from 'src/store';
 
 export default function PrimarySearchAppBar() {
+  const apps = useSelector((state: ApplicationState) => state.apps);
+
   const classes = useStyles();
 
   const menuId = 'primary-search-account-menu';
-
+  console.log('Header');
+  console.log(apps);
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="primary" variant="outlined">

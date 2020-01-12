@@ -11,6 +11,12 @@ export enum UserTypes {
 /**
  * Data types
  */
+
+export interface Auth {
+  email: string;
+  password: string;
+}
+
 export interface User {
   id: number;
   name: string;
