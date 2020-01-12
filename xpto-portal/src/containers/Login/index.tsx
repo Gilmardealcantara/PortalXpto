@@ -1,42 +1,8 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: 'flex',
-      flex: 1,
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100vw',
-      height: '100vh',
-    },
-    loginCard: {
-      width: '30vw',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    loginInput: {
-      display: 'flex',
-      alignItems: 'flex-end',
-      justifyContent: 'space-between',
-    },
-    title: {
-      fontWeight: 'bold',
-      display: 'flex',
-      justifyContent: 'center',
-      color: theme.palette.primary.main,
-    },
-    buttonSubmit: {
-      marginTop: '20px',
-    },
-  }),
-);
+import { useStyles } from './style';
 
 const Login: React.FC = () => {
   const classes = useStyles();
