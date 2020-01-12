@@ -10,6 +10,6 @@ export default class ApiService {
   }
 
   static async Login(auth: Auth): Promise<Response> {
-    return fetchApi.post('Account/Login', auth);
+    return fetchApi.post('Accounts/Login', auth);
   }
 }
