@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
+import { AUTH_TOKEN_KEY } from 'src/utils/constants';
 
 enum AuthenticatedResp {
   unauthorized,
@@ -9,7 +10,7 @@ enum AuthenticatedResp {
 }
 
 export const isAuthenticated = (): AuthenticatedResp => {
-  if (localStorage.getItem('xpto-portal-auth-token')) {
+  if (localStorage.getItem(AUTH_TOKEN_KEY)) {
     return AuthenticatedResp.ok;
   }
   return AuthenticatedResp.unauthorized;
