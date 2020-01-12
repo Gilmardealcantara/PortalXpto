@@ -89,7 +89,6 @@ namespace XptoPortalApi
                     ValidIssuer = issuer,
                     ValidAudience = audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
-                    // TokenDecryptionKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(ecrypt))
                 };
                 options.Events = new JwtBearerEvents
                 {

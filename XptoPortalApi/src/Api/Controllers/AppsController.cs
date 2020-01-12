@@ -16,7 +16,7 @@ namespace XptoPortalApi.Api.Controllers
             _apps = repo;
         }
 
-        [HttpGet, AllowAnonymous]
+        [HttpGet]
         public async Task<IActionResult> Get() => Ok(await _apps.Select().ToArray());
     }
 }

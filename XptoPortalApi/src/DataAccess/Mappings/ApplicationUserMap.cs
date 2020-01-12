@@ -9,6 +9,7 @@ namespace XptoPortalApi.DataAcess.Mappings
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            builder.Ignore(x => x.Token);
             builder.HasData(
                 new ApplicationUser
                 {
