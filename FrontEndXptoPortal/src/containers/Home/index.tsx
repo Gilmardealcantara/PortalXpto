@@ -21,8 +21,8 @@ export default function Home() {
               <div className={classes.cardContent}>
                 <div className={classes.cardapp}>{app.title}</div>
                 <iframe
-                  // src={`${app.url}`}
-                  src={`https://localhost:5056?token=${user.data!.token}`}
+                  src={`${app.url}?token=${user.data!.token}`}
+                  // src={`https://localhost:5056?token=${user.data!.token}`}
                   height="90%"
                   width="90%"
                   title={app.title}
