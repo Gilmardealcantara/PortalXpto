@@ -8,7 +8,7 @@ import { ApplicationState } from 'src/store';
 
 export default function Home() {
   const classes = useStyles();
-  const apps = useSelector((state: ApplicationState) => state.apps.data);
+  const apps = useSelector((state: ApplicationState) => state.apps.filtered);
 
   console.log(apps);
 

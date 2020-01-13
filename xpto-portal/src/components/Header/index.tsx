@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,11 +9,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useStyles } from './style';
 import { ApplicationState } from 'src/store';
+import { filterApps } from 'src/store/ducks/apps/actions';
 
 export default function PrimarySearchAppBar() {
+  const dispatch = useDispatch();
   const apps = useSelector((state: ApplicationState) => state.apps);
-
   const classes = useStyles();
+
+  const changeFilterHandle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    dispatch(filterApps(event.target.value));
+  }, []);
 
   const menuId = 'primary-search-account-menu';
   console.log('Header');
@@ -36,6 +42,7 @@ export default function PrimarySearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={changeFilterHandle}
             />
           </div>
 
