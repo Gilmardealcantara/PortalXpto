@@ -8,21 +8,27 @@ import { ApplicationState } from 'src/store';
 
 export default function Home() {
   const classes = useStyles();
-  const apps = useSelector((state: ApplicationState) => state.apps.filtered);
+  const { apps, user } = useSelector((state: ApplicationState) => state);
 
   console.log(apps);
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={500} className={classes.gridList}>
-        {apps.map(app => (
-          <GridListTile key={app.url}>
-            <div className={classes.cardContent}>
-              <div className={classes.cardapp}>{app.title}</div>
-              <iframe src={app.url} height="90%" width="90%" title={app.title}></iframe>
-            </div>
-          </GridListTile>
-        ))}
+        {user.data &&
+          apps.filtered.map(app => (
+            <GridListTile key={app.id}>
+              <div className={classes.cardContent}>
+                <div className={classes.cardapp}>{app.title}</div>
+                <iframe
+                  src={`${app.url}?token=${user.data!.token}`}
+                  height="90%"
+                  width="90%"
+                  title={app.title}
+                ></iframe>
+              </div>
+            </GridListTile>
+          ))}
       </GridList>
     </div>
   );

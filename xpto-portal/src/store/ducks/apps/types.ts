@@ -13,6 +13,7 @@ export enum AppsTypes {
  * Data types
  */
 export interface App {
+  id: number;
   title: string;
   url: string;
 }
