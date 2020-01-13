@@ -1,19 +1,14 @@
 # Portal XPTO
 
 O portal XPTO é uma aplicação genérica que serve de “vitrine” de diversas outras aplicações.
+O projeto consiste em uma arquitetura de microsserviços e micro frontends.
 
-O projeto consiste em uma arquitetura de microserviços e microfront-ends.
+Aqui temos 5 projetos em um único repositório para uso de prova de conceito. Idealmente os projetos podem ter arquiteturas e usar tecnologias diferentes, desde que tenham o mesmo padrão de design.
+O projeto FrontEndXptoPortal é cliente do projeto, onde os usuários têm acesso. Basicamente uma tela de login e um grid de iframes com os links para as aplicações App1, App2 e App3.
 
-Aqui temos 5 projetos em um único repositório para uso de prova de consceito.
-Idealmente os projetos podem ter arquiteturas e usuar tecnologias direntes, desde que tenham o mesmo
-padrão de desing.
+Os dados, como nome e url, dos Apps estão armazenados no banco de dados do ApiXptoPortal e para serem acessados dependem de um token que é gerado quando o usuário loga no portal XPTO, logo esse também funciona como um Single sign-on.
 
-O projeto FrontEndXptoPortal é cliente do portal, onde os usuários tem acesso.
-Basicamente uma tela de login e um grid de iframes com os links para as aplicações App1, App2 e App3.
-
-Os Apps estão armazenados no banco de dados do ApiXptoPortal e para serem acessados depentem de um token que é gerado quando o usuário loga no portal XPTO.
-
-A autenticação é feita via token JWT e deve ser entendida por todos o serviçõs que serão acessados através do portal.
+A autenticação é feita via token JWT e deve ser entendida por todos o serviços que serão acessados através do portal.
 
 ## Tecnologias
 
