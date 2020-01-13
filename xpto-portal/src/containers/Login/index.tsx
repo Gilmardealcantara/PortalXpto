@@ -45,7 +45,7 @@ const Login: React.FC = () => {
   const handleLogin = useCallback(() => {
     console.log(auth);
     dispatch(UserActions.loginRequest(auth));
-  }, [auth]);
+  }, [auth, dispatch]);
 
   return (
     <div className={classes.container}>

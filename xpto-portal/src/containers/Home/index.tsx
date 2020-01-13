@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className={classes.root}>
       <GridList cellHeight={500} className={classes.gridList}>
-        {user.data &&
+        {user.data ? (
           apps.filtered.map(app => (
             <GridListTile key={app.id}>
               <div className={classes.cardContent}>
@@ -28,7 +28,10 @@ export default function Home() {
                 ></iframe>
               </div>
             </GridListTile>
-          ))}
+          ))
+        ) : (
+          <div />
+        )}
       </GridList>
     </div>
   );

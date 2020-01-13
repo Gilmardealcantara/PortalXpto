@@ -22,7 +22,7 @@ const Main: React.FC<Props> = (props: Props) => {
     const localUser = JSON.parse(localStorage.getItem(AUTH_USER) as string);
     dispatch(setUser(localUser));
     dispatch(loadApps());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
