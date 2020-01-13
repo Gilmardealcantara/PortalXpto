@@ -9,7 +9,7 @@ const INITIAL_STATE: AppsState = {
 
 const reducer: Reducer<AppsState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case AppsTypes.LOAD_REQUEST:
+    case AppsTypes.LOAD_APPS:
       return { ...state, loading: true, error: '' };
     case AppsTypes.SET_APPS:
       return {
@@ -18,7 +18,7 @@ const reducer: Reducer<AppsState> = (state = INITIAL_STATE, action) => {
         error: '',
         data: action.payload,
       };
-    case AppsTypes.LOAD_FAILURE:
+    case AppsTypes.LOAD_APPS_ERROR:
       return {
         ...state,
         loading: false,

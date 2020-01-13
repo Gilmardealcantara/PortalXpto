@@ -1,46 +1,16 @@
-import { put } from 'redux-saga/effects';
-import { loadSuccess, loadFailure } from './actions';
-// import FetchHandler from '../../../services/FetchHandlerService';
-import { AppsState } from './types';
+import { put, call } from 'redux-saga/effects';
+import { loadAppsFail, setApps } from './actions';
+import ApiService from 'src/services';
 
 export function* loadApps() {
   try {
-    // const { response, error } = yield call(FetchHandler.get, 'UserPreferences');
-    const error = false;
+    const { data, error } = yield call(ApiService.GetApps);
     if (error) {
-      yield put(loadFailure(error));
+      yield put(loadAppsFail(error));
     } else {
-      // const json = yield response.json();
-      const json: AppsState = yield new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const userPreference: AppsState = {
-            data: [
-              {
-                url: 'https://dtidigital.com.br/',
-                title: 'dtidigital',
-              },
-              {
-                url: 'https://www.nasa.gov/',
-                title: 'Nasa',
-              },
-              {
-                url: 'https://www.expedia.com.br/Hoteis',
-                title: 'Hoteis',
-              },
-              {
-                url: 'https://www.wikipedia.org/',
-                title: 'wikipedia',
-              },
-            ],
-            loading: false,
-            error: '',
-          };
-          resolve(userPreference);
-        }, 500);
-      });
-      yield put(loadSuccess(json.data));
+      yield put(setApps(data));
     }
   } catch (error) {
-    yield put(loadFailure(error));
+    yield put(loadAppsFail(error));
   }
 }

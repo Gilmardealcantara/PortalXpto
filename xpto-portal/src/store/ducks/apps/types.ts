@@ -3,8 +3,8 @@
  */
 
 export enum AppsTypes {
-  LOAD_REQUEST = '@Apps/LOAD_REQUEST',
-  LOAD_FAILURE = '@Apps/LOAD_FAILURE',
+  LOAD_APPS = '@Apps/LOAD_APPS',
+  LOAD_APPS_ERROR = '@Apps/LOAD_APPS_ERROR',
   SET_APPS = '@Apps/SET_APPS',
 }
 

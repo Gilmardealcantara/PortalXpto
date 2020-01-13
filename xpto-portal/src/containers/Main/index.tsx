@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ApplicationState } from 'src/store';
 import { AUTH_USER } from 'src/utils/constants';
 import { setUser } from 'src/store/ducks/user/actions';
+import { loadApps } from 'src/store/ducks/apps/actions';
 
 interface Props {
   component: any;
@@ -20,6 +21,7 @@ const Main: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     const localUser = JSON.parse(localStorage.getItem(AUTH_USER) as string);
     dispatch(setUser(localUser));
+    dispatch(loadApps());
   }, []);
 
   return (

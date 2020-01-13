@@ -7,6 +7,6 @@ import { login } from './user/sagas';
 export default function* rootSaga() {
   return yield all([
     takeLatest(UserTypes.LOGIN_REQUEST, login),
-    takeLatest(AppsTypes.LOAD_REQUEST, loadApps),
+    takeLatest(AppsTypes.LOAD_APPS, loadApps),
   ]);
 }
