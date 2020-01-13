@@ -6,10 +6,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import { useStyles } from './style';
 import { ApplicationState } from 'src/store';
 import { filterApps } from 'src/store/ducks/apps/actions';
+import { setUser } from 'src/store/ducks/user/actions';
+import history from 'src/routers/history';
+import { AUTH_USER, AUTH_TOKEN } from 'src/utils/constants';
 
 export default function PrimarySearchAppBar() {
   const dispatch = useDispatch();
@@ -52,10 +55,15 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              //   onClick={() => {}}
+              onClick={() => {
+                localStorage.removeItem(AUTH_USER);
+                localStorage.removeItem(AUTH_TOKEN);
+                dispatch(setUser(undefined));
+                history.push('Login');
+              }}
               color="inherit"
             >
-              <AccountCircle />
+              <ExitToApp />
             </IconButton>
           </div>
         </Toolbar>
